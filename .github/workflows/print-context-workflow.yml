@@ -1,0 +1,22 @@
+name: Print Context Example
+on: workflow_dispatch
+jobs:
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print github context
+        run : echo "${{ toJSON(github) }}"
+      - name: Print env context
+        run : echo "${{ toJSON(env) }}"
+      - name: Print vars context
+        run : echo "${{ toJSON(vars) }}"
+      - name: Print job context
+        run : echo "${{ toJSON(job) }}"
+      - name: Print jobs context
+        run : echo "${{ toJSON(jobs) }}"
+      - name: Print steps context
+        run : echo "${{ toJSON(steps) }}"
+      - name: Print secrets context
+        run : echo "${{ toJSON(secrets) }}"
+      - name: Print strategy context
+        run : echo "${{ toJSON(strategy) }}"

@@ -1,5 +1,5 @@
 name: Example Workflow
-on: push
+on: [push, workflow_dispatch]
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -15,6 +15,7 @@ jobs:
       - name: Run tests
         run: CI=true npm test
   deploy:
+    needs: test # depends on test job to finish successfully
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
