@@ -16,6 +16,8 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
+    outputs:
+      example-file: ${{ steps.example.outputs.example-file }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -23,6 +25,9 @@ jobs:
         run: npm ci
       - name: Build Website
         run: npm run build
+      - name: Publish Example filename
+        id: example
+        run: find build/static/js/main.*.js -type f -execdir echo 'example-file={}' >> $GITHUB_OUTPUT ';'
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -38,6 +43,8 @@ jobs:
           name: example-artifact
       - name: List Contents
         run: ls -la
+      - name: Output filename
+        run: echo "${{ needs.build.outputs.example-file }}"
       - name: Deploy
         run: echo "Deploying..."
 
