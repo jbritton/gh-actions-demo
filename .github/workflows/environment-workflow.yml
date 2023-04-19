@@ -1,10 +1,8 @@
 name: Environments Workflow
 on: [push, workflow_dispatch]
-environment: test
 jobs:
   test:
-    env:    # override environment variables
-      DB_HOST: https://test-db-server.example.com
+    environment: test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
