@@ -29,6 +29,7 @@ jobs:
           echo "SERVER_HOST: ${{ env.SERVER_HOST }} "
           echo "SERVER_PORT: $SERVER_PORT"
           echo "DB_HOST: $DB_HOST"
+          echo "DB_PASSWORD: $DB_PASSWORD"
         
         
 
