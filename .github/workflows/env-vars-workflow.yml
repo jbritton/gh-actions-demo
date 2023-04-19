@@ -24,5 +24,12 @@ jobs:
         run: npm run start
       - name: Run tests
         run: CI=true npm test
+      - name: Print environment variables using different syntax
+        run: |
+          echo "SERVER_HOST: ${{ env.SERVER_HOST }} "
+          echo "SERVER_PORT: $SERVER_PORT"
+          echo "DB_HOST: $DB_HOST"
+        
+        
 
 
