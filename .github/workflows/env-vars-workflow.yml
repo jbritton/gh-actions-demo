@@ -1,0 +1,28 @@
+name: Environment Variables Workflow
+on: [push, workflow_dispatch]
+env:
+  SERVER_HOST: https://web-server.example.com
+  SERVER_PORT: 80
+  DB_HOST: https://db-server.example.com
+  DB_PASSWORD: s3cretPa55w0rd
+jobs:
+  test:
+    env:    # override environment variables
+      DB_HOST: https://test-db-server.example.com
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Cache Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: example-key-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dependencies
+        run: npm ci
+      - name: Run server
+        run: npm run start
+      - name: Run tests
+        run: CI=true npm test
+
+
