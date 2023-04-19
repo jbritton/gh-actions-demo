@@ -3,6 +3,11 @@ on: [push, workflow_dispatch]
 jobs:
   test:
     environment: test
+    env:
+      SERVER_HOST: ${{ vars.SERVER_HOST }}
+      SERVER_PORT: ${{ vars.SERVER_PORT }}
+      DB_HOST: ${{ vars.DB_HOST }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
