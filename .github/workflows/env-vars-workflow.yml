@@ -4,7 +4,7 @@ env:
   SERVER_HOST: https://web-server.example.com
   SERVER_PORT: 80
   DB_HOST: https://db-server.example.com
-  DB_PASSWORD: s3cretPa55w0rd
+  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
 jobs:
   test:
     env:    # override environment variables
