@@ -20,6 +20,7 @@ jobs:
         if: ${{ failure() && steps.run-tests.outcome == 'failure' }}
         run: echo 'Uploading test report'
   report:
+    needs: test
     if: failure()
     runs-on: ubuntu-latest
     steps:
