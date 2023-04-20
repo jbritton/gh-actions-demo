@@ -15,9 +15,9 @@ jobs:
       - name: Install dependencies
         if: ${{ steps.cache-dependencies.output.cache-hit != 'true' }}
         run: npm ci
-      - name: Run failing test
+      - name: Run test
         id: run-tests
-        run: CI=true npm test:fail
+        run: CI=true npm test
       - name: Uploading test report
         if: ${{ failure() && steps.run-tests.outcome == 'failure' }}
         run: echo 'Uploading test report'
