@@ -14,8 +14,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Run failing test
+        id: run-tests
         run: CI=true npm test:fail
       - name: Uploading test report
+        if: ${{ failure() && steps.run-tests.outcome == 'failure' }}
         run: echo 'Uploading test report'
 
 
