@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print Deploy Output
-        # run: echo "${{ needs.deploy.outputs.deploy-workflow-result }}"
-        run: echo "${{ toJSON(needs.deploy) }}"
+        run: echo "${{ needs.deploy.outputs.deploy-workflow-result }}"
+
 
 
