@@ -17,7 +17,7 @@ jobs:
         run: npm ci
       - name: Run test
         continue-on-error: true
-        run: CI=true npm test:fail
+        run: CI=true npm run test:fail
       - name: Uploading test report
         run: echo 'Uploading test report'
 
