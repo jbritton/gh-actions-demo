@@ -6,9 +6,18 @@ on:
         description: The name of the deployable artifact files
         required: true
         type: string
+    outputs:
+      deploy-result:
+        description: The result of the deployment operation
+        value: ${{ jobs.deploy.outputs.deploy-result }}
+#    secrets:
+#      example-secret:
+#        required: true
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    outputs:
+      deploy-result: ${{ steps.set-deploy-result.deploy-result }}
     steps:
       - name: Get Artifact
         uses: actions/download-artifact@v3
@@ -18,3 +27,6 @@ jobs:
         run: ls -la
       - name: Output Info
         run: echo "Deploying and uploading..."
+      - name: Set Output
+        id: set-deploy-result
+        run: echo "deploy-result=success" >> $GITHUB_OUTPUT

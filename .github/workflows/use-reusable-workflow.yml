@@ -25,4 +25,13 @@ jobs:
     uses: ./.github/workflows/reusable-workflow.yml
     with:
       artifact-name: example-artifact
+#    secrets:
+#      example-secret: ${{ secrets.example-secret }}
+  print-deploy-result:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Deploy Output
+        run: echo "${{ needs.deploy.outputs.deploy-result }}"
+
 
