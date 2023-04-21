@@ -1,0 +1,26 @@
+name: Continue On Error Workflow
+on: [push, workflow_dispatch]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Cache Dependencies
+        id: cache-dependencies
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: example-key-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dependencies
+        if: ${{ steps.cache-dependencies.outputs.cache-hit != 'true' }}
+        run: npm ci
+      - name: Run test
+        continue-on-error: true
+        run: CI=true npm test:fail
+      - name: Uploading test report
+        run: echo 'Uploading test report'
+
+
+
+
