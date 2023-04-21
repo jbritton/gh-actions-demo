@@ -4,12 +4,27 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Run build
-        run: echo "Building project..."
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Cache Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: example-key-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dependencies
+        run: npm ci
+      - name: Build Website
+        run: npm run build
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: example-artifact
+          path: build
   deploy:
     needs: build
     uses: ./.github/workflows/reusable-workflow.yml
-
+      with:
+        artifact-name: example-artifact
 
 
 
