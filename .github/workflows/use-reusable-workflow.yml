@@ -32,6 +32,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print Deploy Output
-        run: echo "${{ needs.deploy.outputs.deploy-result }}"
+        run: echo "${{ needs.deploy.outputs.deploy-workflow-result }}"
 
 
