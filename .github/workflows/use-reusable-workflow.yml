@@ -20,8 +20,9 @@ jobs:
         with:
           name: example-artifact
           path: build
-#  deploy:
-#    needs: build
-#    uses: ./.github/workflows/reusable-workflow.yml
-#    with:
-#      artifact-name: example-artifact
+  deploy:
+    needs: build
+    uses: ./.github/workflows/reusable-workflow.yml
+    with:
+      artifact-name: example-artifact
+
