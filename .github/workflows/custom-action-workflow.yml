@@ -17,6 +17,7 @@ jobs:
         id: run-tests
         run: CI=true npm test
       - name: Deploy S3 JS
+        id: deploy-s3-js
         uses: ./.github/actions/deploy-s3-js
         env:
           AWS_ACCESS_KEY_ID: 'example-key-id'
@@ -25,6 +26,9 @@ jobs:
           bucket-name: example-bucket
           bucket-region: us-east-2
           dist-folder: build
+      - name: Output Website URL
+        run: |
+          echo "Website URL: ${{ steps.deploy-s3-js.outputs.website-url }}"
 
 
 
