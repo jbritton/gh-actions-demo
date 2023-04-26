@@ -18,6 +18,13 @@ jobs:
         run: CI=true npm test
       - name: Deploy S3 JS
         uses: ./.github/actions/deploy-s3-js
+        env:
+          AWS_ACCESS_KEY_ID: 'example-key-id'
+          AWS_SECRET_ACCESS_KEY: 'example-secret-access-key'
+        with:
+          bucket-name: example-bucket
+          bucket-region: us-east-2
+          dist-folder: build
 
 
 
